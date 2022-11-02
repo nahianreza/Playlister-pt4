@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from '../auth'
 
 import Copyright from './Copyright'
@@ -15,8 +15,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { Modal, Alert } from '@mui/material';
 
 export default function LoginScreen() {
+    const [open, setOpen] = useState(false);
+    const [msg, setMsg] = useState('');
     const { auth } = useContext(AuthContext);
 
     const handleSubmit = (event) => {
@@ -24,7 +27,9 @@ export default function LoginScreen() {
         const formData = new FormData(event.currentTarget);
         auth.loginUser(
             formData.get('email'),
-            formData.get('password')
+            formData.get('password'),
+            setOpen,
+            setMsg,
         );
 
     };
@@ -32,6 +37,11 @@ export default function LoginScreen() {
     return (
         <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
+            <Modal open={open} variant='filled'>
+                <Alert severity='error' onClose={() => setOpen(false)}>
+                    {msg}
+                </Alert>
+            </Modal>
             <Grid
                 item
                 xs={false}
