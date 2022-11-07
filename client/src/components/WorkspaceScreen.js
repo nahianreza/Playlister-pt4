@@ -24,7 +24,7 @@ function WorkspaceScreen() {
         modalJSX = <MUIRemoveSongModal />;
     }
     return (
-        <Box>
+        <Box sx={{height: '100%', overflow: 'scroll', bgcolor: 'background.paper'}}>
         <List 
             id="playlist-cards" 
             sx={{ width: '100%', bgcolor: 'background.paper' }}

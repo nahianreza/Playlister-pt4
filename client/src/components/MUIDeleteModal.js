@@ -3,6 +3,7 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { Button, Typography } from '@mui/material';
 
 const style = {
     position: 'absolute',
@@ -14,6 +15,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    borderRadius: '20px'
 };
 
 export default function MUIDeleteModal() {
@@ -26,7 +28,7 @@ export default function MUIDeleteModal() {
         store.deleteMarkedList();
     }
     function handleCloseModal(event) {
-        store.unmarkListForDeletion();
+        store.hideModals();
     }
 
     return (
@@ -34,23 +36,21 @@ export default function MUIDeleteModal() {
             open={store.listMarkedForDeletion !== null}
         >
             <Box sx={style}>
-                <div className="modal-dialog">
-                <header className="dialog-header">
-                    Delete the {name} Top 5 List?
-                </header>
-                <div id="confirm-cancel-container">
-                    <button
-                        id="dialog-yes-button"
-                        className="modal-button"
+            <Box>
+                    <Typography variant='h4'>
+                        Delete the <span>{name}</span> Play List?
+                    </Typography>
+                </Box>
+                <Box>
+                    <Button
+                        sx={{fontSize: '18px'}}
                         onClick={handleDeleteList}
-                    >Confirm</button>
-                    <button
-                        id="dialog-no-button"
-                        className="modal-button"
+                        >Confirm</Button>
+                        <Button
+                            sx={{float: 'right', fontSize: '18px'}}
                         onClick={handleCloseModal}
-                    >Cancel</button>
-                </div>
-            </div>
+                    >Cancel</Button>
+                </Box>
             </Box>
         </Modal>
     );

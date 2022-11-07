@@ -11,6 +11,7 @@ import {
     Statusbar,
     WorkspaceScreen
 } from './components'
+import { Box } from '@mui/system';
 /*
     This is our application's top-level component.
     
@@ -28,12 +29,14 @@ const App = () => {
             <AuthContextProvider>
                 <GlobalStoreContextProvider>              
                     <AppBanner />
-                    <Switch>
-                        <Route path="/" exact component={HomeWrapper} />
-                        <Route path="/login/" exact component={LoginScreen} />
-                        <Route path="/register/" exact component={RegisterScreen} />
-                        <Route path="/playlist/:id" exact component={WorkspaceScreen} />
-                    </Switch>
+                    <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
+                        <Switch>
+                            <Route path="/" exact component={HomeWrapper} />
+                            <Route path="/login/" exact component={LoginScreen} />
+                            <Route path="/register/" exact component={RegisterScreen} />
+                            <Route path="/playlist/:id" exact component={WorkspaceScreen} />
+                        </Switch>
+                    </Box>
                     <Statusbar />
                 </GlobalStoreContextProvider>
             </AuthContextProvider>

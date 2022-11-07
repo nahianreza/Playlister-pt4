@@ -35,7 +35,7 @@ export default function LoginScreen() {
     };
 
     return (
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container component="main" sx={{ height: '100%' }}>
             <CssBaseline />
             <Modal open={open} variant='filled'>
                 <Alert severity='error' onClose={() => setOpen(false)}>
