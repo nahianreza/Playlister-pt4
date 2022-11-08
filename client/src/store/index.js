@@ -253,6 +253,7 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
     store.closeCurrentList = function () {
+        history.push('/');
         storeReducer({
             type: GlobalStoreActionType.CLOSE_CURRENT_LIST,
             payload: {}
@@ -519,6 +520,17 @@ function GlobalStoreContextProvider(props) {
             payload: null
         });
     }
+
+    store.showRemoveSongModal = (index, song) => {
+        storeReducer({
+            type: GlobalStoreActionType.REMOVE_SONG,
+            payload: {
+                currentSongIndex: index,
+                currentSong: song,
+            }
+        })
+    }
+
 
     return (
         <GlobalStoreContext.Provider value={{

@@ -38,15 +38,25 @@ export default function MUIDeleteModal() {
             <Box sx={style}>
             <Box>
                     <Typography variant='h4'>
+                    Delete <b>{name}</b>?
+                    </Typography>
+                </Box>
+                <hr></hr>
+                <Box>
+                    <Typography variant='h5'>
                         Delete the <span>{name}</span> Play List?
                     </Typography>
                 </Box>
+                <Box height={'30px'}></Box>
                 <Box>
                     <Button
+                    variant='contained'
+                    color='error'
                         sx={{fontSize: '18px'}}
                         onClick={handleDeleteList}
                         >Confirm</Button>
                         <Button
+                            variant='contained'
                             sx={{float: 'right', fontSize: '18px'}}
                         onClick={handleCloseModal}
                     >Cancel</Button>
