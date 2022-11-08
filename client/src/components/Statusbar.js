@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { GlobalStoreContext } from '../store'
+import AuthContext from '../auth';
 import { Box, Typography } from '@mui/material'
 
 /*
@@ -8,14 +9,23 @@ import { Box, Typography } from '@mui/material'
     @author McKilla Gorilla
 */
 function Statusbar() {
+    const { auth } = useContext(AuthContext);
     const { store } = useContext(GlobalStoreContext);
     let text ="";
+    let style = {
+        visibility: "visible" 
+    };
+    if (auth.user == null) 
+        style = {
+        visibility: 'hidden'
+    };
     if (store.currentList)
         text = store.currentList.name;
     return (
-        <Box id="playlister-statusbar">
+        <div id="playlister-statusbar"
+            style={style}>
             <Typography variant="h4">{text}</Typography>
-        </Box>
+        </div>
     );
 }
 
